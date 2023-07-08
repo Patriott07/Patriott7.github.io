@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="judulTab">Home Page</title>
+    <link rel="stylesheet" href="../DomJavascript/fontawesome-free-6.4.0-web/css/all.min.css">
+    <link rel="icon" href="data/logo (2).png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Flamenco&family=Inter&family=Italiana&family=Josefin+Sans&family=Megrim&family=Roboto+Mono:wght@500&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        ::-webkit-scrollbar{
+            display: none;
+        }
+        #howCanHelp {
+            background-image: url("data/bg-hr.png");
+            background-repeat: repeat;
+            background-size: cover;
+            opacity: 0.2;
+            transition: all 1s;
+            background-position-x: -300px;
+        }
+
+        #about::before {
+            content: "";
+            height: 70px;
+            width: 100%;
+            background: linear-gradient(to top, #f5f5f5, transparent);
+            bottom: -20px!important;
+            z-index: 99 !important;
+            position: absolute;
+            left: 0;
+        }.help-text-justify{
+            text-align: justify!important;
+        }.white, .black:hover{
+            padding: 20px 30px;
+            background-color: #000000;
+            color: white;
+            transition: all 1s;
+        }.black{
+            padding: 20px 30px;
+            background-color: #ffffff;
+            color: rgb(0, 0, 0);
+            transition: all 1s;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="content" class="p-0 m-0">
+        <div id="container" v-if="switchCon==false" class="container-fluid py-5 m-0" :class="{ hitam : status }"
+            style="height: 100vh;">
+            <div v-if="status==false">
+                <img src="data/matahari.png" alt="" class="matahari" id="matahari">
+            </div>
+            <div v-else-if="status">
+                <img src="data/bulanrill.png" alt="" class="bulan">
+                <img src="data/bintang.png" alt="" class="bintang img-fluid">
+            </div>
+            <div class="container" v-if="load">
+                <img src="data/369.png" class="load position-absolute translate-middle-x start-50 bottom-50" alt="">
+                <p v-if="infoLoad" id="loadtext" class="form-text position-absolute translate-middle-x start-50 top-50">
+                    Please Wait...
+                    We requesting to join.</p>
+                <p v-else id="loadtext" class="form-text position-absolute translate-middle-x start-50 top-50">Please
+                    Wait.. we will Send your back to Homepage</p>
+            </div>
+
+            <div class="container" v-else>
+                <div class="row my-5 align-items-center justify-content-center">
+                    <div class="col-md-6 col-lg-6">
+                        <img src="data/logo (2).png" class="logo" style="max-width: 200px;">
+                        <p class="small headerText">Because <span v-if="greeting" class="great fs-6"
+                                :class="{greatdark : status}"> Hii Nice to meet you 👋🏻</span></p>
+                        <p class="small">This Was <span>{{ conditionNow }},</span> this will automatic
+                            using the Theme <span>{{ tema }}</span></p>
+                        <p class="form-text">But When now is <span>{{ conditionNot }},</span> the theme is will be
+                            change !</p>
+                        <button class="btn px-3" @click="start()">Start</button>
+                        <button class="btn px-3" @click="greetings()">Greetings!</button>
+                    </div>
+                    <div class="col-6">
+                        <h1 id="ketWaktu" class="medium text-center ms-3 underline-animation">
+                            {{ hour }} : {{ minute }} : {{ second }}
+                        </h1>
+                    </div>
+                </div>
+
+                <div class="row justify-content-start">
+                    <div class="col-1">
+                        <a href="" :class="{light : status==false}">
+                            <i class="fa-brands fa-xl  fa-facebook"></i></a>
+                    </div>
+                    <div class="col-1">
+                        <a href="" :class="{light : status==false}"> <i class="fa-brands  fa-xl fa-instagram"></i></a>
+                    </div>
+                    <div class="col-1">
+                        <a href="" :class="{light : status==false}"> <i class="fa-brands  fa-xl fa-github"></i></a>
+                    </div>
+                    <div class="col-1">
+                        <a href="" :class="{light : status==false}"> <i class="fa-brands  fa-xl fa-google"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container-fluid p-0 m-0" v-else id="realPage">
+
+
+            <header style="height: 100vh; object-fit: cover;" class="position-relative p-0 m-0 container-fluid">
+                <div :class="{ navdeviceCont : navDevice }" class="nav-device position-fixed"
+                    style="width: 150px; height: 100vh; z-index: 1; opacity: 0.9;">
+                    <div class="close text-end m-1" @click="navdevice()">Close</div>
+                    <div class="nav-field container px-3 ">
+                        <a href="#"><span class="xsmall">About</span></a>
+                        <hr>
+                        <a href="#"><span class="xsmall">My Project</span></a>
+                        <hr>
+                        <a href="#"><span class="xsmall">Contact</span></a>
+                        <hr>
+                        <br>
+                        <div @click="back()">
+                            <i class="fa fa-house-chimney"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 ">
+                        <div class="navCont fs-3 ms-3" @click="navdevice()">
+                            <i class="fa fa-bars"></i>
+                        </div>
+                    </div>
+
+                </div>
+                <nav style="height: 56px;" class="row justify-content-between align-items-center mx-5 py-3">
+                    <div class="col-2 col-lg-2 col-md-4" style="z-index: 3;">
+                        <span class="xsmall py-2" @click="back()" style="cursor: pointer;">Full stack</span>
+                    </div>
+                    <div class="col-4 col-md-6 d-flex justify-content-center">
+                        <a href="#about" class="text-dark"> <span class="xsmall py-2">About</span></a>
+                        <a href="#" class="text-dark"> <span class="xsmall py-2 py-md-0 mx-3">My Project</span></a>
+                        <a href="#" class="text-dark"> <span class="xsmall py-2">Contact</span></a>
+                    </div>
+                    <div class="col-2 hour">
+                        <p class="xsmall text-end py-2">Patriot | <span class="nav-hour">{{ hour }} : {{ minute
+                                }}</span></p>
+                    </div>
+                </nav>
+                <div class="hero row d-flex ms-5" id="xsscrool">
+                    <div class="col-5" id="containerTextHeader">
+                        <h2 class="brutalism position-relative" id="im">I’m </h2>
+                        <h2 class="brutalism position-relative" id="fullstack">Fullstack</h2>
+                        <h2 class="brutalism position-relative" id="dev">developer</h2>
+                    </div>
+                    <div class="col-5">
+                        <img class="img-header1 position-absolute"
+                            :src="img"
+                            alt="" class="img-fluid">
+                        <img class="img-header2 position-absolute"
+                            :src="img"
+                            alt="" class="img-fluid">
+                    </div>
+                </div>
+            </header>
+
+
+            <section id="about" style="background-color: #f5f5f5;" class="py-5 px-lg-0">
+                <div class="medium text-center">About</div>
+                <div class="text-about col-lg-6 offset-lg-3 col-md-10 offset-1">
+                    <p class="xsmall text-start">Sebagai seorang Full Stack Developer, saya memiliki keahlian dan
+                        pengalaman dalam mengembangkan aplikasi web dari awal hingga akhir. Saya menguasai teknologi dan
+                        bahasa pemrograman seperti HTML, CSS, JavaScript, dan juga framework seperti React, Vue, dan
+                        Angular di sisi klien, serta Node.js, Express, dan Django di sisi server.
+                        <br><br>
+                        Saya memiliki pemahaman yang mendalam tentang pengembangan tumpukan penuh (full stack
+                        development) dan mampu mengatasi tantangan di berbagai lapisan teknologi. Dengan pengetahuan
+                        yang luas tentang basis data, API, sistem manajemen konten, dan keamanan web, saya dapat
+                        menghadirkan solusi komprehensif yang sesuai dengan kebutuhan bisnis dan pengguna.
+                    </p>
+
+                    <p class="xsmall text-lg-end" :class="{showAboutMore : AboutMore == false}">
+                        Selain itu, saya memiliki kemampuan untuk berkolaborasi dengan tim lintas disiplin, beradaptasi
+                        dengan cepat terhadap perubahan teknologi, dan memiliki keterampilan analitis yang kuat untuk
+                        menganalisis masalah dan merancang solusi yang efisien.
+                        <br> <br>
+                        Saya berkomitmen untuk memberikan hasil yang berkualitas, menjamin kehandalan, kinerja, dan
+                        pengalaman pengguna yang optimal dalam setiap proyek yang saya tangani. Saya terus mengikuti
+                        tren dan perkembangan terbaru dalam industri teknologi, sehingga dapat memberikan solusi yang
+                        inovatif dan terkini kepada klien dan pengguna.
+                        <br> <br>
+                        Saya siap untuk menghadapi tantangan baru dan memberikan kontribusi yang berarti dalam
+                        mengembangkan aplikasi web yang canggih dan efektif.
+                    </p>
+                    <p class="form-text text-end" @click="showMoreAbout">{{ trigReadMoreAbout }}</p>
+                </div>
+            </section>
+
+            <section id="myprofile" class="position-relative container">
+                <h2 class="brutalism position-absolute translate-middle-y">ITS ME</h2>
+                <div class="row align-items-start">
+                    <div class="col-lg-5 col-md-6">
+                        <img :src="img"
+                            alt="" class="img-fluid">
+                    </div>
+                    <div class="offset-lg-1 col-lg-6 col-md-6">
+                        <h2 class="medium mt-3" style="font-size: 70px;">"Building the Web, Front to Back, Code by Code"
+                        </h2>
+                        <div class="lgMe">
+                            <p class="xsmall mt-3">
+                                Halo Nama saya <span>Patriot. </span>Saya adalah seorang <span>Full Stack
+                                    Developer</span> dengan Pengalaman selama 3 Tahun Belajar di SMKN 1 CIREBON. Saya
+                                memiliki latar belakang pendidikan dalam ilmu bahasa pemrograman.Sejak Memasuki SMK saya
+                                Mulai Menekuni dalam bidang pemrograman berbasis Web
+                                <br><br>
+                                Keahlian saya meliputi bahasa pemrograman seperti Html, Css, JavaScript, dan PHP, serta
+                                kerangka kerja seperti Vue, Boostrap, React, dan Laravel. Saya juga berpengalaman dalam
+                                penggunaan basis data SQL serta alat pengembangan seperti Git dan Docker.
+                                <br><br>
+                                Jika Anda tertarik untuk bekerja sama atau ingin mengetahui lebih lanjut tentang
+                                proyek-proyek yang telah saya kerjakan, jangan ragu untuk menghubungi saya melalui Instagram saya
+                                di <a href="https://instagram.com/paatriot_7?igshid=ZDc4ODBmNjlmNQ==" style="color: #1DFF77;">Sini</a> atau melalui link disamping . <a href="#contentProject"
+                                    style="color: #1DFF77;"><span>Kunjungi</span></a>
+                            </p>
+                            <h2 class="medium">Spesialis</h2>
+                            <div class="my-3">
+                                <div class="btnSpes">Front-End Specialist</div>
+                                <div class="btnSpes">Back-End Specialist</div>
+                                <div class="btnSpes">Database Specialist</div>
+                                <div class="btnSpes">DevOps Specialist</div>
+                                <div class="btnSpes">Full Stack Architect</div>
+                                <div class="btnSpes">UI UX Designer</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </section>
+
+            <div class="mdMe container-fluid position-relative">
+                <div class="container">
+                    <p class="xsmall mt-3">
+                        Halo Nama saya <span>Patriot. </span>Saya adalah seorang <span>Full Stack Developer</span>
+                        dengan Pengalaman selama 3 Tahun Belajar di SMKN 1 CIREBON. Saya memiliki latar belakang
+                        pendidikan dalam ilmu bahasa pemrograman.Sejak Memasuki SMK saya Mulai Menekuni dalam bidang
+                        pemrograman berbasis Web
+                        <br><br>
+                        Keahlian saya meliputi bahasa pemrograman seperti Html, Css, JavaScript, dan PHP, serta kerangka
+                        kerja seperti Vue, Boostrap, React, dan Laravel. Saya juga berpengalaman dalam penggunaan basis
+                        data SQL serta alat pengembangan seperti Git dan Docker.
+                        <br><br>
+                        Jika Anda tertarik untuk bekerja sama atau ingin mengetahui lebih lanjut tentang proyek-proyek
+                        yang telah saya kerjakan, jangan ragu untuk menghubungi saya melalui email di <a href=""
+                            style="color: #1DFF77;">Sini</a> atau melalui link disamping . <a href=""
+                            style="color: #1DFF77;"><span>Kunjungi</span></a>
+                    </p>
+                    <h2 class="medium">Spesialis</h2>
+                    <div class="my-3">
+                        <div class="btnSpes">Front-End Specialist</div>
+                        <div class="btnSpes">Back-End Specialist</div>
+                        <div class="btnSpes">Database Specialist</div>
+                        <div class="btnSpes">DevOps Specialist</div>
+                        <div class="btnSpes">Full Stack Architect</div>
+                        <div class="btnSpes">UI UX Designer</div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div id="projek" class="container my-5 py-5">
+                <div class="row align-items-end">
+                    <div class="col-8">
+                        <h2 class="medium">Project</h2>
+                    </div>
+                </div>
+
+                <div class="container" id="contentProject">
+                    <div style="overflow-y: auto; height: 600px;">
+                        <div class="d-flex flex-wrap" id="container-project">
+                             <div v-for="(data , index) in dataProjek" class="mb-3">
+                                 <a @click.prevent="soryMsg(index + 1)" :href="data.linkProject" class="mb-4">
+                                   <img :src="data.posterProjek" alt="" class="img-fluid">
+                                 </a>
+                                 <br> <hr>
+                                <span class="xsmall">{{ index + 1}}</span> <span class="me-5 small">{{ data.namaProjek }} </span> <br>
+                                 <span class="form-text"> Tentang Projek : {{ data.tentang }}</span> <br>
+                                 <span class="form-text"> Tujuan Pembuatan : {{ data.tujuan }}</span> <br> <hr>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+
+
+            <section id="howCanHelp" class="mt-5 text-center">
+                <h2 class="brutalism">How</h2> <br>
+                <h2 class="brutalism">I Can Help</h2> <br>
+                <h2 class="brutalism">You</h2>
+            </section>
+
+            <section id="img-help" class="mt-5 row container-fluid mx-0 px-0">
+              <div class="black">
+                   <div>
+                     <h1 class="brutalism">01</h1>
+                     <p class="small container-fluid">Mencari Tahu, Menganalisa, dan membincangkan kebutuhan client dalam suatu peroject ataupun Aplikasi</p>
+                   </div>
+              </div>
+              <div class="white my-3">
+                  <div>
+                    <h1 class="brutalism">02</h1>
+                    <p class="small container-fluid">Mengerjakan Dan mengaplikasikan semua kebutuhan yang client minta untuk suatu Aplikasi</p>
+                  </div>
+              </div>
+              <div class="black">
+                  <div>
+                    <h1 class="brutalism">03</h1>
+                    <p class="small container-fluid">Menghasilkan Suatu karya yang client Inginkan </p>
+                  </div>
+              </div>
+
+              <div class="row justify-content-center my-5">
+                <p class="xsmall help-text-justify col-lg-6 col-md-8">Sebagai seorang full stack Development saya dituntut harus bisa membantu para client dalam berbagai masalhnya masing-masing. Saya siap dan Berani untuk memulai bekerja sama dengan anda. untuk menciptakan suatu inovasi baru yg lebih Canggih dan lebih Creative tentunya.</p>
+              </div>
+            </section>
+
+            <section class="container-fluid mt-5 pt-5 position-relative" id="footerHero" @mouseenter="footerHead()"
+                @mouseleave="footerHead()">
+                <div :class="{hide : footerHeader==false}">
+                    <h2 class="brutalism position-absolute" :class="{AlwaysThink : footerHeader}"> Always Think</h2>
+                    <img src="data/😜.png" class="position-absolute img-fluid" :class="{emot : footerHeader}" />
+                    <h2 class="brutalism position-absolute " :class="{Positive : footerHeader}">Positive</h2>
+                </div>
+                <div class="row my-5 align-items-end justify-content-center">
+                    <div class="col-lg-3 mt-3">
+                        <div class="btnSpes xsmall px-3 me-lg-5 me-0" @click="footerHead()">Transform</div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 mt-3">
+                        <img :src="img"
+                            alt="" class="img-fluid img-footer">
+                    </div>
+                    <div class="col-lg-3  col-md-3 mt-3">
+                        <p class="xsmall">
+                            Thank For coming Up i hope i can make team work to created new world 🌏
+                        </p>
+                        <p class="xsmall text-end">See you 👋</p>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="container-fluid">
+                <div class="row justify-content-center align-items-end">
+                    <div class="col-2 footerHideS">
+                        <p class="xsmall">I'm Vue.js</p>
+                    </div>
+                    <div class="col-lg-8 justify-content-center d-flex g-5 mx-auto">
+                        <p class="xsmall text-center me-5">GitHub</p>
+                        <a href="https://instagram.com/paatriot_7?igshid=ZDc4ODBmNjlmNQ==" class="xsmall text-center me-5" style="color : black!important">Instagram</a>
+                        <p class="xsmall text-center me-5">Facebook</p>
+                    </div>
+                    <div class="col-2">
+                        <p class="xsmall text-end footerHideS">{{ year }}</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+
+
+
+
+
+    <!-- ----------------------------------------------- -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+    <!-- -----------------json-------------------- -->
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+    <script src="js/script.js"></script>
+
+    <!-- ------------vue------------------ -->
+
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    img : "data/profile.jpg",
+                    tema: "Light",
+                    conditionNow: "Morning",
+                    conditionNot: "Midnight",
+                    minute: "",
+                    hour: "",
+                    second: "",
+                    year: "",
+                    status: false, //untuk tema 
+                    load: false,   // untuk memunculkn loading
+                    greeting: false,  //btn greating
+                    switchCon: false,  //pidnh homepage ke mainpage
+                    navDevice: false, //navSlide
+                    infoLoad: false,  //untuk mngti text load
+                    AboutMore: false, // untuk menampilkn seluruh teks about
+                    jsonData: [],
+                    footerHeader: false,
+                    dataProjek : [
+        {
+            "namaProjek":"Hoteljd",
+            "tentang" : "Website penyedia hotel di seluruh penjuru indonesia",
+            "tujuan" : "Mempermudah manusia untuk mengakses tempat peristirahatan ketika berlibur",
+            "posterProjek" : "imgproject/Capture.PNG",
+            "linkProject" : "#"
+        },
+        {
+            "namaProjek":"E-Book",
+            "tentang" : "Website Penyedia Buku Online Terlaris di Indonesia. dengan akses tanpa batas dan gratis",
+            "tujuan" : "Memberikan kesempatan kepada masyarakat bagi mereka yang berminat membaca buku namun tdk memiliki akses atau dana yg cukup",
+            "posterProjek" : "imgproject/Capture2.PNG",
+            "linkProject" : "../DomJavascript/E-book.html"
+        },
+        {
+            "namaProjek":"Jawabarat",
+            "tentang" : "Landing page yang mengenalkan budaya seputar jawa barat",
+            "tujuan" : "Mengenalkan Kebiasaan, makanan bhkn budaya ke dunia luar.",
+            "posterProjek" : "imgproject/Capture3.PNG",
+            "linkProject" : "#"
+        },
+        {
+            "namaProjek":"My Movie",
+            "tentang" : "Website penyedia film serial di seluruh dunia",
+            "tujuan" : "Memberikan akses untuk masyarakat mencari film yang disukai nya",
+            "posterProjek" : "imgproject/Capture4.PNG",
+            "linkProject" : "#"
+        },
+        {
+            "namaProjek":"Repeat After Me",
+            "tentang" : "Website game simple menggunakan javascript Dom. player harus mendapatkan poin sebanyak banyaknya",
+            "tujuan" : "Memberikan kesan yang berbeda dan sebagai sarana hiburan",
+            "posterProjek" : "imgproject/Capture5.PNG",
+            "linkProject" : "#"
+        },
+        {
+            "namaProjek":"AboutJdhotel",
+            "tentang" : "Website yang memperkenalkan jasa sebuah hotel",
+            "tujuan" : "Bertujuan sebagai sarana informasi perhotelan",
+            "posterProjek" : "imgproject/Capture6.PNG",
+            "linkProject" : "#"
+        }]
+                }
+            },
+            methods: {
+                soryMsg(index){
+                    alert("Maaf sepertinya projek ke-"+index+" belum saya hosting. Maaf atas ketidaknyamanan nya")
+                },
+                footerHead() {
+                    this.footerHeader = !this.footerHeader;
+                },
+                updateTime() {
+                    const now = new Date();
+                    this.minute = now.getMinutes();
+                    this.second = now.getSeconds();
+                    this.hour = now.getHours();
+                    this.year = now.getFullYear();
+
+                },
+                showMoreAbout() {
+                    this.AboutMore = !this.AboutMore;
+                },
+                navdevice() {
+                    this.navDevice = !this.navDevice;
+                },
+                start() {
+                    this.infoLoad = !this.infoLoad;
+                    this.load = !this.load;
+                    const judul = document.getElementById("judulTab");
+
+                    if (this.load) {
+                        judul.textContent = "My Portfolio | Full stack"
+                    } else {
+                        judul.textContent = "Home Page"
+                    }
+
+                    setTimeout(() => {
+                        this.load = true;
+                        if (this.load) {
+                            judul.textContent = "My Portfolio | Full stack"
+                        } else {
+                            judul.textContent = "Home Page"
+                        }
+                        this.switchCon = true
+                    }, 500)
+                },
+                back() {
+                    const judul = document.getElementById("judulTab");
+                    this.load = true;
+                    this.infoLoad = !this.infoLoad;
+                    setTimeout(() => {
+                        this.load = false;
+                        this.switchCon = false;
+                        if (this.load) {
+                            judul.textContent = "My Portfolio | Full stack"
+                        } else {
+                            judul.textContent = "Home Page"
+                        }
+                    }, 1000 * 10)
+                    this.switchCon = !this.switchCon;
+                },
+                greetings() {
+                    this.greeting = true;
+                    setTimeout(() => {
+                        this.greeting = false;
+                    }, 2000)
+                },
+            },
+            mounted() {
+                // startGetJson();
+                this.updateTime(); // Panggil fungsi sekali untuk menginisialisasi waktu
+                setInterval(this.updateTime, 1000); // Perbarui waktu setiap detik
+                const now = new Date();
+                const jam = now.getHours();
+                if (jam > 17 || jam <= 5) {
+                    this.status = true;
+                    this.tema = "Dark";
+                    this.conditionNow = "Night";
+                    this.conditionNot = "Morning"
+                } else {
+                    this.status = false;
+                }
+            },
+            computed: {
+                menit() {
+                    const now = new Date();
+                    return now.getMinutes()
+                },
+                jam() {
+                    const now = new Date();
+                    return now.getHours();
+                },
+                detik() {
+                    const now = new Date();
+                    return now.getSeconds();
+                },
+                trigReadMoreAbout() {
+                    if (this.AboutMore) {
+                        return "Tampilkan lebih sedikit. . ."
+                    } else
+                        return "Tampilkan Lebih banyak. . ."
+                }
+            }
+        })
+
+        app.mount('#content')
+    </script>
+
+</body>
+
+</html>

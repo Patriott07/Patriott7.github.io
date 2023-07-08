@@ -1,0 +1,46 @@
+{
+    "Project" : [
+        {
+            "namaProjek":"Hoteljd",
+            "tentang" : "Website penyedia hotel di seluruh penjuru indonesia",
+            "tujuan" : "Mempermudah manusia untuk mengakses tempat peristirahatan ketika berlibur",
+            "posterProjek" : "imgproject/Capture.PNG",
+            "linkProject" : "#"
+        },
+        {
+            "namaProjek":"E-Book",
+            "tentang" : "Website Penyedia Buku Online Terlaris di Indonesia. dengan akses tanpa batas dan gratis",
+            "tujuan" : "Memberikan kesempatan kepada masyarakat bagi mereka yang berminat membaca buku namun tdk memiliki akses atau dana yg cukup",
+            "posterProjek" : "imgproject/Capture2.PNG",
+            "linkProject" : "../DomJavascript/E-book.html"
+        },
+        {
+            "namaProjek":"Jawabarat",
+            "tentang" : "Landing page yang mengenalkan budaya seputar jawa barat",
+            "tujuan" : "Mengenalkan Kebiasaan, makanan bhkn budaya ke dunia luar.",
+            "posterProjek" : "imgproject/Capture3.PNG",
+            "linkProject" : "#"
+        },
+        {
+            "namaProjek":"My Movie",
+            "tentang" : "Website penyedia film serial di seluruh dunia",
+            "tujuan" : "Memberikan akses untuk masyarakat mencari film yang disukai nya",
+            "posterProjek" : "imgproject/Capture4.PNG",
+            "linkProject" : "#"
+        },
+        {
+            "namaProjek":"Repeat After Me",
+            "tentang" : "Website game simple menggunakan javascript Dom. player harus mendapatkan poin sebanyak banyaknya",
+            "tujuan" : "Memberikan kesan yang berbeda dan sebagai sarana hiburan",
+            "posterProjek" : "imgproject/Capture5.PNG",
+            "linkProject" : "#"
+        },
+        {
+            "namaProjek":"AboutJdhotel",
+            "tentang" : "Website yang memperkenalkan jasa sebuah hotel",
+            "tujuan" : "Bertujuan sebagai sarana informasi perhotelan",
+            "posterProjek" : "imgproject/Capture6.PNG",
+            "linkProject" : "#"
+        }
+    ]
+}
