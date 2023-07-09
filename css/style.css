@@ -1,4 +1,15 @@
 @media screen and (min-width: 670px) and (max-width: 970px) {
+   .mdMe span{
+    text-decoration: underline;
+    text-decoration-color: #1DFF77;
+   }
+    header{
+        height: 100vh;
+    }
+
+    .ticker-tape{
+        display: none;
+    }
     .AlwaysThink{
         font-size: 50px!important;
         top: 30%!important;
@@ -32,10 +43,12 @@
 
     .mdMe {
         display: block !important;
-        background-color: #fbfeb5;
+        background-color: #000000;
         padding: 60px 10px 60px 10px;
-        border-radius: 130px 130px 20px 20px;
+        box-shadow: #1DFF77 2px 2px 2px 2px;
 
+    }.mdMe .xsmall, .mdMe .medium{
+        color: white!important;
     }
 
     .mdMe::after {
@@ -44,10 +57,13 @@
         width: 100%;
         background: linear-gradient(to bottom, #fbfeb5, transparent);
         z-index: 9 !important;
+        color: white!important;
     }
 
-    .btnSpes {
+    .btnSpes:hover {
         color: #fbfeb5 !important;
+        background-color: #1DFF77!important;
+        border-bottom: #fbfeb5!important;
     }
 
     .brutalism {
@@ -77,6 +93,12 @@
     .hour {
         display: none;
     }
+    .footerHideS{
+        display: none;
+    }
+    .btntrans{
+       display: none;
+    }
 }
 
 
@@ -85,6 +107,12 @@
 
 
 @media screen and (max-width: 680px) {
+    .mdMe .xsmall, .mdMe .medium{
+        color: white!important;
+    }
+    .ticker-tape{
+        display: none;
+    }
     .AlwaysThink{
         font-size: 50px!important;
         top: 30%!important;
@@ -137,9 +165,9 @@
 
     .mdMe {
         display: block !important;
-        background-color: #fbfeb5;
-        padding: 60px 30px 60px 30px;
-        border-radius: 130px 130px 70px 0px;
+        background-color: #000000;
+        padding: 60px 10px 60px 10px;
+        box-shadow: #1DFF77 2px 2px 2px 2px;
 
     }
 
@@ -151,8 +179,14 @@
         z-index: 9 !important;
     }
 
-    .btnSpes {
+    .btnSpes:hover {
         color: #fbfeb5 !important;
+        background-color: #1DFF77!important;
+        border-bottom: #fbfeb5!important;
+    }
+
+    .btnSpes {
+        color: #ffffff !important;
     }
 
     .lgMe {
@@ -528,9 +562,9 @@ p.form-text {
     transition: all 0.6s;
 }
 
-p.form-text:hover {
+#about p.form-text:hover::before {
+    content: "-> ";
     margin-right: 10px;
-    color: #1DFF77;
 }
 
 
@@ -639,4 +673,9 @@ img.imgrow:hover {
     transform: scale(0.8) translateX(-80px);
 }.hide:hover{
     overflow-y: hidden;
+}#contentProject{
+  
+    box-shadow: #D6D6D6 2px 2px 2px 2px;
+}#projek .form-text{
+    color: #242424!important;
 }

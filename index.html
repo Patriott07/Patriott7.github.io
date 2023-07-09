@@ -18,9 +18,10 @@
         rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <style>
-        ::-webkit-scrollbar{
+        ::-webkit-scrollbar {
             display: none;
         }
+
         #howCanHelp {
             background-image: url("data/bg-hr.png");
             background-repeat: repeat;
@@ -30,27 +31,182 @@
             background-position-x: -300px;
         }
 
-        #about::before {
+        header::after {
             content: "";
-            height: 70px;
+            height: 20px;
             width: 100%;
             background: linear-gradient(to top, #f5f5f5, transparent);
-            bottom: -20px!important;
-            z-index: 99 !important;
+            bottom: 0px !important;
+            z-index: 2 !important;
             position: absolute;
             left: 0;
-        }.help-text-justify{
-            text-align: justify!important;
-        }.white, .black:hover{
+        }
+
+        .help-text-justify {
+            text-align: justify !important;
+        }
+
+        .white,
+        .black:hover {
             padding: 20px 30px;
             background-color: #000000;
             color: white;
             transition: all 1s;
-        }.black{
+        }
+
+        .black {
             padding: 20px 30px;
             background-color: #ffffff;
             color: rgb(0, 0, 0);
             transition: all 1s;
+        }
+
+        /*tape*/
+
+        :root {
+            --height: 100px;
+            --speed: 30s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .ticker-tape-black {
+            background-color: #2a2a2a;
+            display: flex;
+            font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui,
+                helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
+            width: 100%;
+            overflow: hidden;
+            height: var(--height);
+            padding-right: 100%;
+            transform: rotate(0deg);
+        }
+
+        .ticker-tape-black .ticker-black {
+            height: var(--height);
+            line-height: var(--height);
+            white-space: nowrap;
+            padding-right: 100%;
+
+            -webkit-animation-iteration-count: infinite;
+            -webkit-animation-timing-function: linear;
+            -webkit-animation-name: tickerfromleft;
+            -webkit-animation-duration: var(--speed);
+
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+            animation-name: tickerfromleft;
+            animation-duration: var(--speed);
+
+        }
+
+        .ticker-tape-black .ticker__item {
+
+            display: inline-block;
+            padding: 0rem 2rem;
+            font-size: 8rem;
+            font-weight: 900;
+            letter-spacing: 1.5rem;
+            color: #ffffff;
+            z-index: 5;
+        }
+
+        /* ------------------------ */
+
+        .ticker-tape-white {
+            background-color: #ffffff;
+            display: flex;
+            font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui,
+                helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
+            width: 100%;
+            overflow: hidden;
+            height: var(--height);
+            padding-left: 100%;
+            transform: rotate(0deg);
+            border-bottom: 1px solid #2a2a2a05;
+        }
+
+        .ticker-tape-white .ticker-white {
+            height: var(--height);
+            line-height: var(--height);
+            white-space: nowrap;
+            padding-left: 100%;
+
+            -webkit-animation-iteration-count: infinite;
+            -webkit-animation-timing-function: linear;
+            -webkit-animation-name: tickerfromright;
+            -webkit-animation-duration: var(--speed);
+
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+            animation-name: tickerfromright;
+            animation-duration: var(--speed);
+
+        }
+
+        .ticker-tape-white .ticker__item {
+
+            display: inline-block;
+            padding: 0rem 2rem;
+            font-size: 8rem;
+            font-weight: 900;
+            letter-spacing: 1.5rem;
+            color: #2a2a2a;
+            z-index: 5;
+        }
+
+        @-webkit-keyframes tickerfromleft {
+            0% {
+                -webkit-transform: translateX(-100%);
+                transform: translateX(-100%);
+                visibility: visible;
+            }
+
+            100% {
+                -webkit-transform: translateX(0);
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes tickerfromleft {
+            0% {
+                -webkit-transform: translateX(-100%);
+                transform: translateX(-100%);
+                visibility: visible;
+            }
+
+            100% {
+                -webkit-transform: translateX(0);
+                transform: translateX(0);
+            }
+        }
+        @-webkit-keyframes tickerfromright {
+            0% {
+                -webkit-transform: translateX(0);
+                transform: translateX(0);
+                visibility: visible;
+            }
+
+            100% {
+                -webkit-transform: translateX(-100%);
+                transform: translateX(-100%);
+            }
+        }
+
+        @keyframes tickerfromright {
+            0% {
+                -webkit-transform: translateX(0);
+                transform: translateX(0);
+                visibility: visible;
+            }
+
+            100% {
+                -webkit-transform: translateX(-100%);
+                transform: translateX(-100%);
+            }
         }
     </style>
 </head>
@@ -113,11 +269,12 @@
             </div>
         </div>
 
-
+        <!-- real page -->
         <div class="container-fluid p-0 m-0" v-else id="realPage">
 
 
-            <header style="height: 100vh; object-fit: cover;" class="position-relative p-0 m-0 container-fluid">
+
+            <header style="height:110vh ; object-fit: cover;" class="position-relative p-0 m-0 container-fluid">
                 <div :class="{ navdeviceCont : navDevice }" class="nav-device position-fixed"
                     style="width: 150px; height: 100vh; z-index: 1; opacity: 0.9;">
                     <div class="close text-end m-1" @click="navdevice()">Close</div>
@@ -148,8 +305,8 @@
                     </div>
                     <div class="col-4 col-md-6 d-flex justify-content-center">
                         <a href="#about" class="text-dark"> <span class="xsmall py-2">About</span></a>
-                        <a href="#" class="text-dark"> <span class="xsmall py-2 py-md-0 mx-3">My Project</span></a>
-                        <a href="#" class="text-dark"> <span class="xsmall py-2">Contact</span></a>
+                        <a href="#projek" class="text-dark"> <span class="xsmall py-2 py-md-0 mx-3">My Project</span></a>
+                        <a href="#footer" class="text-dark"> <span class="xsmall py-2">Contact</span></a>
                     </div>
                     <div class="col-2 hour">
                         <p class="xsmall text-end py-2">Patriot | <span class="nav-hour">{{ hour }} : {{ minute
@@ -163,14 +320,12 @@
                         <h2 class="brutalism position-relative" id="dev">developer</h2>
                     </div>
                     <div class="col-5">
-                        <img class="img-header1 position-absolute"
-                            :src="img"
-                            alt="" class="img-fluid">
-                        <img class="img-header2 position-absolute"
-                            :src="img"
-                            alt="" class="img-fluid">
+                        <img class="img-header1 position-absolute" :src="img" alt="" class="img-fluid">
+                        <img class="img-header2 position-absolute" :src="img" alt="" class="img-fluid">
                     </div>
                 </div>
+
+
             </header>
 
 
@@ -209,8 +364,7 @@
                 <h2 class="brutalism position-absolute translate-middle-y">ITS ME</h2>
                 <div class="row align-items-start">
                     <div class="col-lg-5 col-md-6">
-                        <img :src="img"
-                            alt="" class="img-fluid">
+                        <img :src="img" alt="" class="img-fluid">
                     </div>
                     <div class="offset-lg-1 col-lg-6 col-md-6">
                         <h2 class="medium mt-3" style="font-size: 70px;">"Building the Web, Front to Back, Code by Code"
@@ -227,8 +381,11 @@
                                 penggunaan basis data SQL serta alat pengembangan seperti Git dan Docker.
                                 <br><br>
                                 Jika Anda tertarik untuk bekerja sama atau ingin mengetahui lebih lanjut tentang
-                                proyek-proyek yang telah saya kerjakan, jangan ragu untuk menghubungi saya melalui Instagram saya
-                                di <a href="https://instagram.com/paatriot_7?igshid=ZDc4ODBmNjlmNQ==" style="color: #1DFF77;">Sini</a> atau melalui link disamping . <a href="#contentProject"
+                                proyek-proyek yang telah saya kerjakan, jangan ragu untuk menghubungi saya melalui
+                                Instagram saya
+                                di <a target="_blank" href="https://instagram.com/paatriot_7?igshid=ZDc4ODBmNjlmNQ=="
+                                    style="color: #1DFF77;">Sini</a> atau melalui link disamping . <a target="_blank"
+                                    href="https://github.com/Patriott07/"
                                     style="color: #1DFF77;"><span>Kunjungi</span></a>
                             </p>
                             <h2 class="medium">Spesialis</h2>
@@ -261,9 +418,9 @@
                         data SQL serta alat pengembangan seperti Git dan Docker.
                         <br><br>
                         Jika Anda tertarik untuk bekerja sama atau ingin mengetahui lebih lanjut tentang proyek-proyek
-                        yang telah saya kerjakan, jangan ragu untuk menghubungi saya melalui email di <a href=""
-                            style="color: #1DFF77;">Sini</a> atau melalui link disamping . <a href=""
-                            style="color: #1DFF77;"><span>Kunjungi</span></a>
+                        yang telah saya kerjakan, jangan ragu untuk menghubungi saya melalui email di <a target="_blank" href=""
+                            style="color: #1DFF77;">Sini</a> atau melalui link disamping . <a target="_blank"
+                            href="https://github.com/Patriott07/" style="color: #1DFF77;"><span>Kunjungi</span></a>
                     </p>
                     <h2 class="medium">Spesialis</h2>
                     <div class="my-3">
@@ -278,30 +435,48 @@
             </div>
 
 
+            <div class="container-fluid mt-5 mx-0 p-0">
 
-            <div id="projek" class="container my-5 py-5">
-                <div class="row align-items-end">
-                    <div class="col-8">
-                        <h2 class="medium">Project</h2>
+                <div class="ticker-tape-black">
+                    <div class="ticker-black">
+                        <div class="ticker__item ">ProJect</div>
+                        <div class="ticker__item ">ProJect</div>
+                        <div class="ticker__item ">ProJect</div>
+                        <div class="ticker__item ">ProJect</div>
                     </div>
                 </div>
 
-                <div class="container" id="contentProject">
-                    <div style="overflow-y: auto; height: 600px;">
-                        <div class="d-flex flex-wrap" id="container-project">
-                             <div v-for="(data , index) in dataProjek" class="mb-3">
-                                 <a @click.prevent="soryMsg(index + 1)" :href="data.linkProject" class="mb-4">
-                                   <img :src="data.posterProjek" alt="" class="img-fluid">
-                                 </a>
-                                 <br> <hr>
-                                <span class="xsmall">{{ index + 1}}</span> <span class="me-5 small">{{ data.namaProjek }} </span> <br>
-                                 <span class="form-text"> Tentang Projek : {{ data.tentang }}</span> <br>
-                                 <span class="form-text"> Tujuan Pembuatan : {{ data.tujuan }}</span> <br> <hr>
-                             </div>
+                <div class="ticker-tape-white">
+                    <div class="ticker-white">
+                        <div class="ticker__item ">ProJect</div>
+                        <div class="ticker__item ">ProJect</div>
+                        <div class="ticker__item ">ProJect</div>
+                        <div class="ticker__item ">ProJect</div>
+                    </div>
+                </div>
+                
+
+                <div id="projek" class="container mb-5 py-5">
+                    <div class="container" id="contentProject" class="scroolProject">
+                        <div style="overflow-y: auto; height: 600px;">
+                            <div class="d-flex flex-wrap" id="container-project">
+                                <div v-for="(data , index) in dataProjek" class="mb-3">
+                                    <a @click.prevent="soryMsg(index + 1)" :href="data.linkProject" class="mb-4">
+                                        <img :src="data.posterProjek" alt="" class="img-fluid">
+                                    </a>
+                                    <br>
+                                    <hr>
+                                    <span class="xsmall">{{ index + 1}}</span> <span class="me-5 small">{{
+                                        data.namaProjek }} </span> <br>
+                                    <span class="form-text"> Tentang Projek : {{ data.tentang }}</span> <br>
+                                    <span class="form-text"> Tujuan Pembuatan : {{ data.tujuan }}</span> <br>
+                                    <hr>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
+                </div>
             </div>
 
 
@@ -316,28 +491,33 @@
             </section>
 
             <section id="img-help" class="mt-5 row container-fluid mx-0 px-0">
-              <div class="black">
-                   <div>
-                     <h1 class="brutalism">01</h1>
-                     <p class="small container-fluid">Mencari Tahu, Menganalisa, dan membincangkan kebutuhan client dalam suatu peroject ataupun Aplikasi</p>
-                   </div>
-              </div>
-              <div class="white my-3">
-                  <div>
-                    <h1 class="brutalism">02</h1>
-                    <p class="small container-fluid">Mengerjakan Dan mengaplikasikan semua kebutuhan yang client minta untuk suatu Aplikasi</p>
-                  </div>
-              </div>
-              <div class="black">
-                  <div>
-                    <h1 class="brutalism">03</h1>
-                    <p class="small container-fluid">Menghasilkan Suatu karya yang client Inginkan </p>
-                  </div>
-              </div>
+                <div class="black">
+                    <div>
+                        <h1 class="brutalism">01</h1>
+                        <p class="small container-fluid">Mencari Tahu, Menganalisa, dan membincangkan kebutuhan client
+                            dalam suatu peroject ataupun Aplikasi</p>
+                    </div>
+                </div>
+                <div class="white my-3">
+                    <div>
+                        <h1 class="brutalism">02</h1>
+                        <p class="small container-fluid">Mengerjakan Dan mengaplikasikan semua kebutuhan yang client
+                            minta untuk suatu Aplikasi</p>
+                    </div>
+                </div>
+                <div class="black">
+                    <div>
+                        <h1 class="brutalism">03</h1>
+                        <p class="small container-fluid">Menghasilkan Suatu karya yang client Inginkan </p>
+                    </div>
+                </div>
 
-              <div class="row justify-content-center my-5">
-                <p class="xsmall help-text-justify col-lg-6 col-md-8">Sebagai seorang full stack Development saya dituntut harus bisa membantu para client dalam berbagai masalhnya masing-masing. Saya siap dan Berani untuk memulai bekerja sama dengan anda. untuk menciptakan suatu inovasi baru yg lebih Canggih dan lebih Creative tentunya.</p>
-              </div>
+                <div class="row justify-content-center my-5">
+                    <p class="xsmall help-text-justify col-lg-6 col-md-8">Sebagai seorang full stack Development saya
+                        dituntut harus bisa membantu para client dalam berbagai masalhnya masing-masing. Saya siap dan
+                        Berani untuk memulai bekerja sama dengan anda. untuk menciptakan suatu inovasi baru yg lebih
+                        Canggih dan lebih Creative tentunya.</p>
+                </div>
             </section>
 
             <section class="container-fluid mt-5 pt-5 position-relative" id="footerHero" @mouseenter="footerHead()"
@@ -348,12 +528,11 @@
                     <h2 class="brutalism position-absolute " :class="{Positive : footerHeader}">Positive</h2>
                 </div>
                 <div class="row my-5 align-items-end justify-content-center">
-                    <div class="col-lg-3 mt-3">
-                        <div class="btnSpes xsmall px-3 me-lg-5 me-0" @click="footerHead()">Transform</div>
+                    <div class="col-lg-3 mt-3 btntrans">
+                        <div class="btnSpes xsmall px-3 me-lg-5 me-0" @click.stop="footerHead()">Transform</div>
                     </div>
                     <div class="col-lg-4 col-md-4 mt-3">
-                        <img :src="img"
-                            alt="" class="img-fluid img-footer">
+                        <img :src="img" alt="" class="img-fluid img-footer">
                     </div>
                     <div class="col-lg-3  col-md-3 mt-3">
                         <p class="xsmall">
@@ -364,14 +543,17 @@
                 </div>
             </section>
 
-            <footer class="container-fluid">
+            <footer class="container-fluid" id="footer">
                 <div class="row justify-content-center align-items-end">
                     <div class="col-2 footerHideS">
                         <p class="xsmall">I'm Vue.js</p>
                     </div>
                     <div class="col-lg-8 justify-content-center d-flex g-5 mx-auto">
-                        <p class="xsmall text-center me-5">GitHub</p>
-                        <a href="https://instagram.com/paatriot_7?igshid=ZDc4ODBmNjlmNQ==" class="xsmall text-center me-5" style="color : black!important">Instagram</a>
+
+                        <a target="_blank" href="https://github.com/Patriott07/" class="xsmall text-center me-5"
+                            style="color : black!important">Git Hub</a>
+                        <a target="_blank" href="https://instagram.com/paatriot_7?igshid=ZDc4ODBmNjlmNQ=="
+                            class="xsmall text-center me-5" style="color : black!important">Instagram</a>
                         <p class="xsmall text-center me-5">Facebook</p>
                     </div>
                     <div class="col-2">
@@ -411,7 +593,7 @@
         const app = Vue.createApp({
             data() {
                 return {
-                    img : "data/profile.jpg",
+                    img: "data/profile.jpg",
                     tema: "Light",
                     conditionNow: "Morning",
                     conditionNot: "Midnight",
@@ -422,60 +604,60 @@
                     status: false, //untuk tema 
                     load: false,   // untuk memunculkn loading
                     greeting: false,  //btn greating
-                    switchCon: false,  //pidnh homepage ke mainpage
+                    switchCon: true,  //pidnh homepage ke mainpage
                     navDevice: false, //navSlide
                     infoLoad: false,  //untuk mngti text load
                     AboutMore: false, // untuk menampilkn seluruh teks about
                     jsonData: [],
                     footerHeader: false,
-                    dataProjek : [
-        {
-            "namaProjek":"Hoteljd",
-            "tentang" : "Website penyedia hotel di seluruh penjuru indonesia",
-            "tujuan" : "Mempermudah manusia untuk mengakses tempat peristirahatan ketika berlibur",
-            "posterProjek" : "imgproject/Capture.PNG",
-            "linkProject" : "#"
-        },
-        {
-            "namaProjek":"E-Book",
-            "tentang" : "Website Penyedia Buku Online Terlaris di Indonesia. dengan akses tanpa batas dan gratis",
-            "tujuan" : "Memberikan kesempatan kepada masyarakat bagi mereka yang berminat membaca buku namun tdk memiliki akses atau dana yg cukup",
-            "posterProjek" : "imgproject/Capture2.PNG",
-            "linkProject" : "../DomJavascript/E-book.html"
-        },
-        {
-            "namaProjek":"Jawabarat",
-            "tentang" : "Landing page yang mengenalkan budaya seputar jawa barat",
-            "tujuan" : "Mengenalkan Kebiasaan, makanan bhkn budaya ke dunia luar.",
-            "posterProjek" : "imgproject/Capture3.PNG",
-            "linkProject" : "#"
-        },
-        {
-            "namaProjek":"My Movie",
-            "tentang" : "Website penyedia film serial di seluruh dunia",
-            "tujuan" : "Memberikan akses untuk masyarakat mencari film yang disukai nya",
-            "posterProjek" : "imgproject/Capture4.PNG",
-            "linkProject" : "#"
-        },
-        {
-            "namaProjek":"Repeat After Me",
-            "tentang" : "Website game simple menggunakan javascript Dom. player harus mendapatkan poin sebanyak banyaknya",
-            "tujuan" : "Memberikan kesan yang berbeda dan sebagai sarana hiburan",
-            "posterProjek" : "imgproject/Capture5.PNG",
-            "linkProject" : "#"
-        },
-        {
-            "namaProjek":"AboutJdhotel",
-            "tentang" : "Website yang memperkenalkan jasa sebuah hotel",
-            "tujuan" : "Bertujuan sebagai sarana informasi perhotelan",
-            "posterProjek" : "imgproject/Capture6.PNG",
-            "linkProject" : "#"
-        }]
+                    dataProjek: [
+                        {
+                            "namaProjek": "Hoteljd",
+                            "tentang": "Website penyedia hotel di seluruh penjuru indonesia",
+                            "tujuan": "Mempermudah manusia untuk mengakses tempat peristirahatan ketika berlibur",
+                            "posterProjek": "imgproject/Capture.PNG",
+                            "linkProject": "#"
+                        },
+                        {
+                            "namaProjek": "E-Book",
+                            "tentang": "Website Penyedia Buku Online Terlaris di Indonesia. dengan akses tanpa batas dan gratis",
+                            "tujuan": "Memberikan kesempatan kepada masyarakat bagi mereka yang berminat membaca buku namun tdk memiliki akses atau dana yg cukup",
+                            "posterProjek": "imgproject/Capture2.PNG",
+                            "linkProject": "../DomJavascript/E-book.html"
+                        },
+                        {
+                            "namaProjek": "Jawabarat",
+                            "tentang": "Landing page yang mengenalkan budaya seputar jawa barat",
+                            "tujuan": "Mengenalkan Kebiasaan, makanan bhkn budaya ke dunia luar.",
+                            "posterProjek": "imgproject/Capture3.PNG",
+                            "linkProject": "#"
+                        },
+                        {
+                            "namaProjek": "My Movie",
+                            "tentang": "Website penyedia film serial di seluruh dunia",
+                            "tujuan": "Memberikan akses untuk masyarakat mencari film yang disukai nya",
+                            "posterProjek": "imgproject/Capture4.PNG",
+                            "linkProject": "#"
+                        },
+                        {
+                            "namaProjek": "Repeat After Me",
+                            "tentang": "Website game simple menggunakan javascript Dom. player harus mendapatkan poin sebanyak banyaknya",
+                            "tujuan": "Memberikan kesan yang berbeda dan sebagai sarana hiburan",
+                            "posterProjek": "imgproject/Capture5.PNG",
+                            "linkProject": "#"
+                        },
+                        {
+                            "namaProjek": "AboutJdhotel",
+                            "tentang": "Website yang memperkenalkan jasa sebuah hotel",
+                            "tujuan": "Bertujuan sebagai sarana informasi perhotelan",
+                            "posterProjek": "imgproject/Capture6.PNG",
+                            "linkProject": "#"
+                        }]
                 }
             },
             methods: {
-                soryMsg(index){
-                    alert("Maaf sepertinya projek ke-"+index+" belum saya hosting. Maaf atas ketidaknyamanan nya")
+                soryMsg(index) {
+                    alert("Maaf sepertinya projek ke-" + index + " belum saya hosting. Maaf atas ketidaknyamanan nya")
                 },
                 footerHead() {
                     this.footerHeader = !this.footerHeader;
