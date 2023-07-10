@@ -1,42 +1,50 @@
 @media screen and (min-width: 670px) and (max-width: 970px) {
-   .mdMe span{
-    text-decoration: underline;
-    text-decoration-color: #1DFF77;
-   }
-    header{
+    .mdMe span {
+        text-decoration: underline;
+        text-decoration-color: #1DFF77;
+    }
+
+    header {
         height: 100vh;
     }
 
-    .ticker-tape{
+    .ticker-tape {
         display: none;
     }
-    .AlwaysThink{
-        font-size: 50px!important;
-        top: 30%!important;
-      }.emot{
-        width: 50px!important;
-       
-      }.Positive{
-        left: 30%!important;
-        font-size: 50px!important;
-        
-      }
 
-    #img-help .col-lg-8:nth-child(2),#img-help .col-lg-8:nth-child(3){
-     background-color: #f5f5f5;
-     padding-top: 30px;
-}
+    .AlwaysThink {
+        font-size: 50px !important;
+        top: 30% !important;
+    }
 
-    #img-help .col-lg-8:nth-child(4){
-    background-color: #fbfeb5;
-    padding: 20px 40px;
-    margin: 0px 0px;
-    border-radius: 0px 0px 40px 40px;
-}
+    .emot {
+        width: 50px !important;
 
-    .imgrow{
+    }
+
+    .Positive {
+        left: 30% !important;
+        font-size: 50px !important;
+
+    }
+
+    #img-help .col-lg-8:nth-child(2),
+    #img-help .col-lg-8:nth-child(3) {
+        background-color: #f5f5f5;
+        padding-top: 30px;
+    }
+
+    #img-help .col-lg-8:nth-child(4) {
+        background-color: #fbfeb5;
+        padding: 20px 40px;
+        margin: 0px 0px;
+        border-radius: 0px 0px 40px 40px;
+    }
+
+    .imgrow {
         display: none;
     }
+
     .lgMe {
         display: none !important;
     }
@@ -47,8 +55,11 @@
         padding: 60px 10px 60px 10px;
         box-shadow: #1DFF77 2px 2px 2px 2px;
 
-    }.mdMe .xsmall, .mdMe .medium{
-        color: white!important;
+    }
+
+    .mdMe .xsmall,
+    .mdMe .medium {
+        color: white !important;
     }
 
     .mdMe::after {
@@ -57,13 +68,13 @@
         width: 100%;
         background: linear-gradient(to bottom, #fbfeb5, transparent);
         z-index: 9 !important;
-        color: white!important;
+        color: white !important;
     }
 
     .btnSpes:hover {
         color: #fbfeb5 !important;
-        background-color: #1DFF77!important;
-        border-bottom: #fbfeb5!important;
+        background-color: #1DFF77 !important;
+        border-bottom: #fbfeb5 !important;
     }
 
     .brutalism {
@@ -74,8 +85,6 @@
     .hero {
         margin-top: 20px;
     }
-
-    .hero .brutalism:nth-child(2) {}
 
     .img-header1 {
         top: 40px !important;
@@ -93,11 +102,13 @@
     .hour {
         display: none;
     }
-    .footerHideS{
+
+    .footerHideS {
         display: none;
     }
-    .btntrans{
-       display: none;
+
+    .btntrans {
+        display: none;
     }
 }
 
@@ -107,27 +118,35 @@
 
 
 @media screen and (max-width: 680px) {
-    .mdMe .xsmall, .mdMe .medium{
-        color: white!important;
+
+    .mdMe .xsmall,
+    .mdMe .medium {
+        color: white !important;
     }
-    .ticker-tape{
+
+    .ticker-tape {
         display: none;
     }
-    .AlwaysThink{
-        font-size: 50px!important;
-        top: 30%!important;
-        left: 0!important;
-      }.emot{
-        top: 70%!important;
-        width: 50px!important;
-       
-      }.Positive{
-        left: 60%!important;
-        font-size: 50px!important;
-        top: 40%!important;
-      }
 
-    .footerHideS{
+    .AlwaysThink {
+        font-size: 50px !important;
+        top: 30% !important;
+        left: 0 !important;
+    }
+
+    .emot {
+        top: 70% !important;
+        width: 50px !important;
+
+    }
+
+    .Positive {
+        left: 60% !important;
+        font-size: 50px !important;
+        top: 40% !important;
+    }
+
+    .footerHideS {
         display: none;
     }
 
@@ -138,12 +157,12 @@
         left: 10px;
     }
 
-    #footerHero .brutalism{
-        font-size: 40px!important;
+    #footerHero .brutalism {
+        font-size: 40px !important;
     }
 
-    .brutalism{
-        font-size: 100px!important;
+    .brutalism {
+        font-size: 100px !important;
     }
 
     #img-help .col-lg-8:nth-child(2),
@@ -181,8 +200,8 @@
 
     .btnSpes:hover {
         color: #fbfeb5 !important;
-        background-color: #1DFF77!important;
-        border-bottom: #fbfeb5!important;
+        background-color: #1DFF77 !important;
+        border-bottom: #fbfeb5 !important;
     }
 
     .btnSpes {
@@ -239,8 +258,6 @@
         color: #D6D6D6;
         display: none;
     }
-
-    .navdeviceCont {}
 
     .navCont,
     .close,
@@ -648,34 +665,57 @@ img.imgrow:hover {
 
 .imgProject:hover {
     opacity: 1;
-}img.img-footer{
+}
+
+img.img-footer {
     transition: all 1s;
     border-radius: 0px 0px 0% 0%;
-}img.img-footer:hover{
-    border-radius: 0px 0px 50% 50%;
-}.AlwaysThink{
-  top: 0;
-  left: 50%;
-}.emot{
-  width: 100px;
-  top: 85%;
-  left: 60%;
-}.Positive{
-  top: 20%;
-  left: 10%;
 }
-.Positive,.emot,.AlwaysThink{
+
+img.img-footer:hover {
+    border-radius: 0px 0px 50% 50%;
+}
+
+.AlwaysThink {
+    top: 0;
+    left: 50%;
+}
+
+.emot {
+    width: 100px;
+    top: 85%;
+    left: 60%;
+}
+
+.Positive {
+    top: 20%;
+    left: 10%;
+}
+
+.Positive,
+.emot,
+.AlwaysThink {
     transition: all 2s;
-}.hide{
+}
+
+.hide {
     opacity: 0;
-    
-}.emot:hover{
+
+}
+
+.emot:hover {
     transform: scale(0.8) translateX(-80px);
-}.hide:hover{
+}
+
+.hide:hover {
     overflow-y: hidden;
-}#contentProject{
-  
+}
+
+#contentProject {
+
     box-shadow: #D6D6D6 2px 2px 2px 2px;
-}#projek .form-text{
-    color: #242424!important;
+}
+
+#projek .form-text {
+    color: #242424 !important;
 }
