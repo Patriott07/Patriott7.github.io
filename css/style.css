@@ -712,10 +712,29 @@ img.img-footer:hover {
 }
 
 #contentProject {
-
-    box-shadow: #D6D6D6 2px 2px 2px 2px;
+    box-shadow: #D6D6D650 2px 2px 2px 2px;
+    transition: all 0.6s;
 }
-
+#contentProject:hover{
+    box-shadow: #1dff77cb 20px 20px 30px 0px;
+}
 #projek .form-text {
     color: #242424 !important;
+}
+#projek .btnSpes:hover{
+    transition: all 0.3s;
+    transform: scale(1.1);
+}
+@keyframes image-transition {
+    0% {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  #projek .img-fluid{
+    animation: image-transition 1s ease;
 }

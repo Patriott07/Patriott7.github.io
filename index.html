@@ -435,7 +435,7 @@
             </div>
 
 
-            <div class="container-fluid mt-5 mx-0 p-0">
+            <div class="container-fluid mt-5 mx-0 p-0 ">
 
                 <div class="ticker-tape-black">
                     <div class="ticker-black">
@@ -456,9 +456,17 @@
                 </div>
                 
 
-                <div id="projek" class="container mb-5 py-5">
-                    <div class="container" id="contentProject" class="scroolProject">
-                        <div style="overflow-y: auto; height: 600px;">
+                <div id="projek" class="container mb-3 py-5 px-0">
+                    <div class="container p-0 m-0" id="contentProject" >                    
+                       
+                        <div style="max-height: 530px; width:100%;" class="position-relative p-0">
+                            <p class="bg-dark p-1 text-light position-absolute bottom-0 right-0 me-3" style="right: 0!important;">{{ dataCurent.tentang }}</p>
+                            <a href="" @click.prevent="soryMsg(' ')">
+                                <img :src="dataCurent.posterProjek" class="img-fluid" style="max-width: 100%; max-height: 100%;" alt="">
+                            </a>
+                        </div>
+                       
+                        <!-- <div style="overflow-y: auto; height: 400px;">
                             <div class="d-flex flex-wrap" id="container-project">
                                 <div v-for="(data , index) in dataProjek" class="mb-3">
                                     <a @click.prevent="soryMsg(index + 1)" :href="data.linkProject" class="mb-4">
@@ -473,10 +481,16 @@
                                     <hr>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
 
+                    <div class="d-flex justify-content-center mt-5">
+                        <span v-for="(data, index) in dataProjek" class="me-3 fw-bold">
+                            <span class="mx-1 btnSpes" @click="changeImgProj(index)">{{ index + 1 }}</span>
+                        </span>
+                    </div>
                 </div>
+                
             </div>
 
 
@@ -593,6 +607,10 @@
         const app = Vue.createApp({
             data() {
                 return {
+                    dataCurent : {
+                        posterProjek:"imgproject/Capture.PNG",
+                        tentang : "Website penyedia hotel di seluruh penjuru indonesia"
+                    },
                     img: "data/profile.jpg",
                     tema: "Light",
                     conditionNow: "Morning",
@@ -656,8 +674,11 @@
                 }
             },
             methods: {
+                changeImgProj(index){
+                    this.dataCurent = this.dataProjek[index];
+                },
                 soryMsg(index) {
-                    alert("Maaf sepertinya projek ke-" + index + " belum saya hosting. Maaf atas ketidaknyamanan nya")
+                    alert("Maaf sepertinya projek ini belum saya hosting. Maaf atas ketidaknyamanan nya")
                 },
                 footerHead() {
                     this.footerHeader = !this.footerHeader;
@@ -695,7 +716,7 @@
                             judul.textContent = "Home Page"
                         }
                         this.switchCon = true
-                    }, 500)
+                    }, 1000)
                 },
                 back() {
                     const judul = document.getElementById("judulTab");
@@ -709,7 +730,7 @@
                         } else {
                             judul.textContent = "Home Page"
                         }
-                    }, 1000 * 10)
+                    }, 1000)
                     this.switchCon = !this.switchCon;
                 },
                 greetings() {
